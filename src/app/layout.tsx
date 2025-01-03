@@ -1,6 +1,22 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import Navbar from "@/Components/navbar";
+import Hero from "@/Components/Hero";
+import NewCollections from "@/Components/Newcollections.";
+import WinterCollection from "@/Components/wintercollection";
+import ProductSlider from "@/Components/Productslider";
+import WinterEssentials from "@/Components/winterEssentials";
+import CategorySection from "@/Components/categorysection";
+import Gendercollecion from "@/Components/Gendercollection";
+import LayeringBasic from "@/Components/Layeringbasic";
+import Footer from "@/Components/footer";
+import WinterBanner from "@/Components/Winterbanner";
+import TopBar from "@/Components/topbar/page";
+import Product from "@/sanity/schemaTypes/Product";
+
+
+
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -28,7 +44,20 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+     <TopBar/> 
+<Navbar/>
         {children}
+        <Hero/>
+
+        <NewCollections/>
+        <WinterCollection/>
+        <Gendercollecion/>
+        <ProductSlider/>
+        <WinterEssentials/>
+        <CategorySection/>
+        <LayeringBasic/>
+        <Footer/>
+      
       </body>
     </html>
   );
