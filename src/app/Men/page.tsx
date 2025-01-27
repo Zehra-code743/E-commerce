@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image'; // Import Image component from next/image
 import { FaShoppingCart } from 'react-icons/fa'; // Import cart icon from react-icons
 
 const Men = () => {
@@ -92,9 +93,11 @@ const Men = () => {
             key={product.id}
             className="bg-white shadow-lg rounded-lg overflow-hidden transform hover:scale-105 hover:shadow-xl transition-transform duration-300 ease-in-out"
           >
-            <img
+            <Image
               src={product.image}
               alt={product.name}
+              width={500} // Set desired width
+              height={400} // Set desired height
               className="h-60 w-full object-cover rounded-t-lg"
             />
             <div className="p-6">

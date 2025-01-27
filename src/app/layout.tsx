@@ -5,15 +5,14 @@ import Navbar from "@/Components/navbar";
 import Hero from "@/Components/Hero";
 import NewCollections from "@/Components/Newcollections.";
 import WinterCollection from "@/Components/wintercollection";
-import ProductSlider from "@/Components/Productslider";
 import WinterEssentials from "@/Components/winterEssentials";
 import CategorySection from "@/Components/categorysection";
 import Gendercollecion from "@/Components/Gendercollection";
+import BestSellers from "@/Components/BestSellers";
 import LayeringBasic from "@/Components/Layeringbasic";
-import Footer from "@/Components/footer";
-import WinterBanner from "@/Components/Winterbanner";
+import Footer from "@/Components/footer"
 import TopBar from "@/Components/topbar/page";
-import Product from "@/sanity/schemaTypes/Product";
+
 
 
 
@@ -52,7 +51,7 @@ export default function RootLayout({
         <NewCollections/>
         <WinterCollection/>
         <Gendercollecion/>
-        <ProductSlider/>
+        <BestSellers/>
         <WinterEssentials/>
         <CategorySection/>
         <LayeringBasic/>
