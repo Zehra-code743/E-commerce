@@ -12,6 +12,7 @@ import BestSellers from "@/Components/BestSellers";
 import LayeringBasic from "@/Components/Layeringbasic";
 import Footer from "@/Components/footer"
 import TopBar from "@/Components/topbar/page";
+import { ClerkProvider } from "@clerk/nextjs";
 
 
 
@@ -42,7 +43,9 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+
+      ><ClerkProvider>
+
      <TopBar/> 
 <Navbar/>
         {children}
@@ -56,6 +59,7 @@ export default function RootLayout({
         <CategorySection/>
         <LayeringBasic/>
         <Footer/>
+        </ClerkProvider>
       
       </body>
     </html>

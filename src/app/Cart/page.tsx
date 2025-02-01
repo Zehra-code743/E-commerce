@@ -1,6 +1,9 @@
 'use client'; // This tells Next.js to treat this file as a Client Component
 
+import { Card } from '@/Components/ui/card';
+import { error } from 'console';
 import { useState } from 'react';
+import { CartContext } from '@/context/CartContext';
 
 const winterProducts = [
   {
@@ -26,13 +29,26 @@ const winterProducts = [
   },
 ];
 
+
 export default function Cart() {
   const [cart, setCart] = useState(winterProducts); // Cart state
+  const [mycart, setMycart] = useState("/ProductDetails");
   const [checkout, setCheckout] = useState(false); // Checkout state
 
   const getTotal = () => {
     return cart.reduce((total, item) => total + item.price, 0);
   };
+
+  const newcart = (pro:any) => {
+    const ourcart = cart.find((items) => items.id == pro.id ? pro.name : pro.price) ;
+
+    switch (ourcart) {
+      case setMycart(`${pro.name}:${pro.price} `):
+        break;
+      default: error("Error!!!")
+        break;
+    }
+  }
 
   const addToCart = (product: any) => {
     const isAlreadyInCart = cart.some((item) => item.id === product.id);
@@ -53,6 +69,33 @@ export default function Cart() {
       <div className="max-w-5xl mx-auto">
         {!checkout ? (
           <>
+
+          <div className='grid grid-cols-6 text-4xl px-6 py-2 mx-2 justify-center rounded-md shadow-lg border-2 lg:text-3xl md:text-2xl sm:text-sm'>
+            <Card>
+               <div className="mt-8 p-6 bg-gray-100 rounded-lg shadow-md">
+               <h2 className="text-2xl font-bold mb-4">Cart Items</h2>
+               {cart.length > 0 ? (
+                 <ul className="space-y-4">
+                   {cart.map((item, index) => (
+                     <li key={index} className="flex items-center justify-between p-4 bg-white rounded-lg shadow">
+                       <div className="flex items-center space-x-4">
+                         <Image src={item.imageUrl} alt={item.name} width={50} height={50} className="rounded" />
+                         <div>
+                           <p className="font-semibold">{item.name}</p>
+                           <p className="text-sm text-gray-500">Color: {item.color}</p>
+                           <p className="text-lg font-bold">${item.price}</p>
+                         </div>
+                       </div>
+                       <button onClick={() => setCart(cart.filter((_, i) => i !== index))} className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600">Remove</button>
+                     </li>
+                   ))}
+                 </ul>
+               ) : (
+                 <p className="text-gray-500">Your cart is empty.</p>
+               )}
+             </div>
+            </Card>
+          </div>
             {/* Cart View */}
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 text-center">Winter Collection</h1>
 
@@ -103,7 +146,7 @@ export default function Cart() {
                 <hr className="my-4" />
                 <button
                   onClick={proceedToCheckout}
-                  className="w-full md:w-auto bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition duration-300"
+                  className="w-full md:w-auto bg-blue-500 text-white py-2 rounded-md px-4 hover:bg-blue-600 transition duration-300"
                   disabled={cart.length === 0}
                 >
                   Proceed to Checkout
