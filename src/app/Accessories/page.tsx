@@ -2,67 +2,23 @@
 
 import React, { useState } from 'react';
 import { FaShoppingCart } from 'react-icons/fa'; // Import the cart icon
+import { Dialog } from '@headlessui/react';
 
 const Accessories = () => {
   const [cart, setCart] = useState<any[]>([]); // Local cart state
+  const [isCheckoutOpen, setIsCheckoutOpen] = useState(false); // Checkout form visibility state
+  const [isSuccess, setIsSuccess] = useState(false); // Success message visibility
+  const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false); // Success modal state
 
   const products = [
-    {
-      id: '1',
-      name: 'Leather Gloves',
-      image: '/Accessories1.png',
-      price: 40,
-      colors: ['gold', 'gray'],
-    },
-    {
-      id: '2',
-      name: 'Knitted Scarf',
-      image: '/Accessories2.png',
-      price: 25,
-      colors: ['silver', 'lightpink'],
-    },
-    {
-      id: '3',
-      name: 'Wool Beanie',
-      image: '/Accessories3.png',
-      price: 20,
-      colors: ['brown', 'white'],
-    },
-    {
-      id: '4',
-      name: 'Faux Fur Stole',
-      image: '/Accessories4.png',
-      price: 50,
-      colors: ['gold', 'white'],
-    },
-    {
-      id: '5',
-      name: 'Stylish Belt',
-      image: '/Accessories5.png',
-      price: 35,
-      colors: ['red', 'blue', 'gray'],
-    },
-    {
-      id: '6',
-      name: 'Silk Handkerchief',
-      image: '/Accessories6.png',
-      price: 15,
-      colors: ['black', 'brown'],
-    },
-    {
-      id: '7',
-      name: 'Designer Sunglasses',
-      image: '/Accessories7.png',
-      price: 120,
-      colors: ['black', 'tan'],
-    },
-    {
-      id: '8',
-      name: 'Pendant Necklace',
-      image: '/Accessories8.png',
-      price: 60,
-      colors: ['golden', 'silver'],
-    },
+    { id: '1', name: 'Leather Gloves', image: '/Accessories1.png', price: 40, colors: ['gold', 'gray'] },
+    { id: '2', name: 'Knitted Scarf', image: '/Accessories2.png', price: 25, colors: ['silver', 'lightpink'] },
+    { id: '3', name: 'Wool Beanie', image: '/Accessories3.png', price: 20, colors: ['brown', 'white'] },
+    { id: '4', name: 'Faux Fur Stole', image: '/Accessories4.png', price: 50, colors: ['gold', 'white'] },
+    { id: '5', name: 'Stylish Belt', image: '/Accessories5.png', price: 35, colors: ['red', 'blue', 'gray'] },
+    { id: '6', name: 'Silk Handkerchief', image: '/Accessories6.png', price: 15, colors: ['black', 'brown'] },
+    { id: '7', name: 'Designer Sunglasses', image: '/Accessories7.png', price: 120, colors: ['black', 'tan'] },
+    { id: '8', name: 'Pendant Necklace', image: '/Accessories8.png', price: 60, colors: ['golden', 'silver'] },
   ];
 
   const handleAddToCart = (product: any) => {
@@ -81,6 +37,14 @@ const Accessories = () => {
 
   const handleRemoveFromCart = (productId: string) => {
     setCart((prevCart) => prevCart.filter((item) => item.id !== productId));
+  };
+
+  const handleCheckout = (e: any) => {
+    e.preventDefault();
+    setIsCheckoutOpen(false);
+    setIsSuccessModalOpen(true);
+    setCart([]); // Empty cart
+    setTimeout(() => setIsSuccessModalOpen(false), 3000); // Hide the success message after 3 seconds
   };
 
   return (
@@ -122,7 +86,15 @@ const Accessories = () => {
       </div>
 
       {/* Display cart summary */}
-      <div className="mt-12 p-6 bg-white shadow-lg rounded-lg max-w-md mx-auto">
+      <div className="mt-12 p-6 bg-white shadow-lg rounded-lg max-w-md mx-auto relative">
+        {/* Beautiful success alert message */}
+        {isSuccessModalOpen && (
+          <div className="absolute top-0 left-0 mt-4 ml-4 bg-green-500 text-white py-3 px-5 rounded-lg shadow-lg flex items-center space-x-3">
+            <span className="text-2xl">✔</span>
+            <p className="text-lg font-semibold">Order placed successfully!</p>
+          </div>
+        )}
+
         <h2 className="text-2xl font-semibold mb-5 text-gray-800">Cart Summary</h2>
         {cart.length > 0 ? (
           <div>
@@ -148,13 +120,67 @@ const Accessories = () => {
                 </span>
               </div>
             </div>
+            <button
+              onClick={() => setIsCheckoutOpen(true)}
+              className="mt-6 w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition duration-300"
+            >
+              Proceed to Checkout
+            </button>
           </div>
         ) : (
           <p className="text-gray-500">Your cart is empty.</p>
         )}
       </div>
+
+      {/* Checkout form */}
+      <Dialog
+        open={isCheckoutOpen}
+        onClose={() => setIsCheckoutOpen(false)}
+        className="fixed inset-0 flex items-center justify-center p-4 bg-gray-900 bg-opacity-50"
+      >
+        <div className="bg-white p-6 rounded-lg shadow-xl max-w-md w-full">
+          <h2 className="text-2xl font-bold mb-4">Checkout</h2>
+          <form onSubmit={handleCheckout}>
+            <input
+              type="text"
+              placeholder="Full Name"
+              required
+              className="w-full p-2 border rounded mb-4"
+            />
+            <input
+              type="email"
+              placeholder="Email Address"
+              required
+              className="w-full p-2 border rounded mb-4"
+            />
+            <input
+              type="text"
+              placeholder="Shipping Address"
+              required
+              className="w-full p-2 border rounded mb-4"
+            />
+            <button
+              type="submit"
+              className="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition duration-300"
+            >
+              Confirm Order
+            </button>
+          </form>
+        </div>
+      </Dialog>
+
+      {/* Success Message (Centered Modal) */}
+      {isSuccessModalOpen && (
+        <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">
+          <div className="bg-green-500 text-white p-6 rounded-lg shadow-lg text-center animate-bounce">
+            <span className="text-3xl font-semibold">✔</span>
+            <p className="mt-4">Order placed successfully!</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
 
 export default Accessories;
+
