@@ -1,7 +1,8 @@
 import ProductDetails from "@/Components/ProductDetails";
 
-const ProductPage = ({ params }: { params: { slug: string } }) => {
-  return <ProductDetails productId={params.slug} />;
-};
-
-export default ProductPage;
+export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
+  const resolvedParams = await params;
+  return (
+    <ProductDetails productId={resolvedParams.slug} />
+  );
+}
