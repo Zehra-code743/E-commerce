@@ -10,11 +10,64 @@ const Men = () => {
   const [showCheckout, setShowCheckout] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
 
+ 
   const products = [
-    { id: '1', name: 'Classic Leather Jacket', image: '/Men1.png', price: 120, colors: ['black', 'brown', 'red'] },
-    { id: '2', name: 'Winter Puffer Jacket', image: '/Men2.png', price: 150, colors: ['yellow', 'blue', 'white'] },
-    { id: '3', name: 'Denim Jacket', image: '/Men3.png', price: 85, colors: ['blue', 'gray'] },
-    { id: '4', name: 'Wool Overcoat', image: '/Men4.png', price: 200, colors: ['black', 'gray', 'navy'] },
+    {
+      id: '1',
+      name: 'Classic Leather Jacket',
+      image: '/Men1.png',
+      price: 120,
+      colors: ['black', 'brown', 'red'],
+    },
+    {
+      id: '2',
+      name: 'Winter Puffer Jacket',
+      image: '/Men2.png',
+      price: 150,
+      colors: ['yellow', 'blue', 'white'],
+    },
+    {
+      id: '3',
+      name: 'Denim Jacket',
+      image: '/Men3.png',
+      price: 85,
+      colors: ['blue', 'gray'],
+    },
+    {
+      id: '4',
+      name: 'Wool Overcoat',
+      image: '/Men4.png',
+      price: 200,
+      colors: ['black', 'gray', 'navy'],
+    },
+    {
+      id: '5',
+      name: 'Leather Biker Jacket',
+      image: '/Men5.png',
+      price: 180,
+      colors: ['black', 'red'],
+    },
+    {
+      id: '6',
+      name: 'Hooded Parka',
+      image: '/Men6.png',
+      price: 160,
+      colors: ['olive', 'black'],
+    },
+    {
+      id: '7',
+      name: 'Suede Bomber Jacket',
+      image: '/Men7.png',
+      price: 140,
+      colors: ['brown', 'tan'],
+    },
+    {
+      id: '8',
+      name: 'Sherpa Lined Jacket',
+      image: '/Men8.png',
+      price: 110,
+      colors: ['gray', 'black'],
+    },
   ];
 
   const handleAddToCart = (product: any) => {
