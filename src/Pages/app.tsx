@@ -1,5 +1,5 @@
 // src/pages/_app.tsx or src/app/layout.tsx
-import { CartProvider } from '@/context/CartContext'; // Import the CartProvider
+import { CartProvider } from '@/connect/page'; // Import the CartProvider
 
 function MyApp() {
   return (

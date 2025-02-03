@@ -1336,12 +1336,12 @@ const ProductDetails = ({ productId }: { productId: string }) => {
 
   const handleCartToggle = () => {
     if (result) {
-      const newItem = {
-        id: result.id,
-        name: result.name,
-        price: result.price,
-        color: selectedColor,
-        imageUrl: result.imageUrl,
+        const newItem = {
+          id: result.id,
+          name: result.name,
+          price: result.price,
+          color: selectedColor,
+          imageUrl: result.imageUrl,
         quantity:result.quantity,
       };
       isProductInCart() ? removeFromCart(result.id) : addToCart(newItem);
@@ -1381,21 +1381,21 @@ const ProductDetails = ({ productId }: { productId: string }) => {
               ></button>
             ))}
           </div>
-        </div>
+          </div>
 
-        <button
-          onClick={handleCartToggle}
+            <button
+              onClick={handleCartToggle}
           className={`w-full mt-4 py-2 rounded-md text-white font-semibold ${isProductInCart() ? "bg-red-500 hover:bg-red-600" : "bg-blue-500 hover:bg-blue-600"}`}
-        >
-          {isProductInCart() ? "Remove from Cart" : "Add to Cart"}
-        </button>
+            >
+              {isProductInCart() ? "Remove from Cart" : "Add to Cart"}
+            </button>
 
         <button
           onClick={handleWishlistToggle}
           className={`w-full mt-4 py-2 rounded-md text-white font-semibold ${isProductInWishlist() ? "bg-gray-500 hover:bg-gray-600" : "bg-pink-500 hover:bg-pink-600"}`}
         >
           {isProductInWishlist() ? "Remove from Wishlist" : "Add to Wishlist"}
-        </button>
+            </button>
       </div>
 
       {/* Wishlist Display */}
