@@ -1,6 +1,19 @@
+// 
+
+
+
+
+
+// src/app/product/[slug]/page.tsx
 import ProductDetails from "@/Components/ProductDetails";
 
-const ProductPage = ({ params }: { params: { slug: string } }) => {
+interface ProductPageProps {
+  params: {
+    slug: string; // You can change this type depending on what you're passing in the URL
+  };
+}
+
+const ProductPage = ({ params }: ProductPageProps) => {
   return <ProductDetails productId={params.slug} />;
 };
 
