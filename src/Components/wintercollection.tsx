@@ -11,7 +11,7 @@ const WinterCollection = () => {
   const items = [
     { id: 1, name: "HATS", image: "/Product1.png", price: "$70" },
     { id: 2, name: "PARKAS", image: "/Product2.png", price: "$150" },
-    { id: 3, name: "JACKETS", image: "/product3.png", price: "$200" },
+    { id: 3, name: "JACKETS", image: "/Product3.png", price: "$200" },
     { id: 4, name: "GLOVES", image: "/Product4.png", price: "$120" },
     { id: 5, name: "WRAPS", image: "/Product5.png", price: "$90" },
     { id: 6, name: "SunGlass", image: "/Product6.png", price: "$50" },
